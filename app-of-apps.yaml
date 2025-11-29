@@ -5,16 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/luoyingjuntorino/ArgoCD-GitOps
     targetRevision: HEAD
-    path: apps # ArgoCD 会扫描该目录下的所有子 app（fastapi-clientinfo、nginx…）
-
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-
   syncPolicy:
     automated:
       prune: true
