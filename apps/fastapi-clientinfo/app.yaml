@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fastapi-clientinfo
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/luoyingjuntorino/ArgoCD-GitOps
+    targetRevision: HEAD
+    path: apps/fastapi-clientinfo
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

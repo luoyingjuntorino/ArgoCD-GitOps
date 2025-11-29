@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fastapi-clientinfo-ingress
+  labels:
+    app: fastapi-clientinfo
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/clientinfo
+            pathType: Prefix
+            backend:
+              service:
+                name: fastapi-clientinfo-service
+                port:
+                  number: 80
