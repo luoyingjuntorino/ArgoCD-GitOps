@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-root
+  name: fastapi-clientinfo
   namespace: argocd
 spec:
   project: default
@@ -9,11 +9,11 @@ spec:
   source:
     repoURL: https://github.com/luoyingjuntorino/ArgoCD-GitOps
     targetRevision: HEAD
-    path: apps # ArgoCD 会扫描该目录下的所有子 app（fastapi-clientinfo、nginx…）
+    path: apps/nginx
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
 
   syncPolicy:
     automated:

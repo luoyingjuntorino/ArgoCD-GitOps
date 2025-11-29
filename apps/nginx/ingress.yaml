@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-nginx-ingress
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-strip-nginx-prefix@kubernetescrd
+spec:
+  ingressClassName: traefik-1764434605
+  rules:
+    - http:
+        paths:
+          - path: /nginx
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
